@@ -4,7 +4,10 @@
   "description": "MERN Simple Ecommerce",
   "main": "server.js",
   "scripts": {
-    "start": "node server/server"
+    "start": "node server/server",
+    "server": "nodemon server/server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,9 @@
   "homepage": "https://github.com/shahnewaztameem/electro-shop-mern#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.1",
+    "nodemon": "^2.0.7"
   }
 }
