@@ -1,0 +1,22 @@
+{
+  "name": "electro-shop-mern",
+  "version": "1.0.0",
+  "description": "MERN Simple Ecommerce",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shahnewaztameem/electro-shop-mern.git"
+  },
+  "author": "Shahnewaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shahnewaztameem/electro-shop-mern/issues"
+  },
+  "homepage": "https://github.com/shahnewaztameem/electro-shop-mern#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
