@@ -3,7 +3,7 @@ import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 import Message from '../components/Message'
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id
@@ -13,7 +13,7 @@ const CartScreen = ({ match, location, history }) => {
 
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
-
+  console.log(cartItems);
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty))
@@ -21,7 +21,7 @@ const CartScreen = ({ match, location, history }) => {
   }, [dispatch, productId, qty])
 
   const removeFromCartHandler = (id) => {
-    console.log('remove')
+    dispatch(removeFromCart(id))
   }
 
   const checkoutHandler = () => {
