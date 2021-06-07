@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spinner } from 'react-bootstrap'
+
 
 const Loader = () => {
   return (
@@ -20,11 +20,11 @@ const Loader = () => {
         cy='50'
         r='20'
         fill='none'
-        stroke-width='5'
+        strokeWidth='5'
         stroke='#45d6b5'
-        stroke-linecap='round'
-        stroke-dashoffset='0'
-        stroke-dasharray='100, 200'
+        strokeLinecap='round'
+        strokeDashoffset='0'
+        strokeDasharray='100, 200'
       >
         <animateTransform
           attributeName='transform'
