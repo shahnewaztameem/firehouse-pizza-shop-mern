@@ -4,16 +4,16 @@ import {
   getProducts,
   getProductById,
   deleteProduct,
+  updateProduct,
+  createProduct,
 } from '../controller/productController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
-//@desc       Fetch All products
-//@route      GET /api/products
-//@access     Public
-router.route('/').get(getProducts)
 
-//@desc       Fetch a single products
-//@route      GET /api/products/:id
-//@access     Public
-router.route('/:id').get(getProductById).delete(protect, admin, deleteProduct)
+router.route('/').get(getProducts).post(protect, admin, createProduct)
+router
+  .route('/:id')
+  .get(getProductById)
+  .delete(protect, admin, deleteProduct)
+  .put(protect, admin, updateProduct)
 
 export default router
