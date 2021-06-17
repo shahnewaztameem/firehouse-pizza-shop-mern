@@ -64,6 +64,14 @@ const orderSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    isPending: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    pendingAt: {
+      type: Date,
+    },
     deliveredAt: {
       type: Date,
     },
