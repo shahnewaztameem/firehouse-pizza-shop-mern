@@ -9,7 +9,7 @@ const PaymentScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
 
-  if (!shippingAddress) {
+  if (!shippingAddress.address) {
     history.push('/shipping')
   }
 
@@ -20,6 +20,7 @@ const PaymentScreen = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(savePaymentMethod(paymentMethod))
+    
     history.push('/placeorder')
   }
 
