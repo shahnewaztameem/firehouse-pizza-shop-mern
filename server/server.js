@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import path from 'path'
+import morgan from 'morgan'
 import express from 'express'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
@@ -16,6 +17,10 @@ connectDB()
 const app = express()
 
 app.use(express.json())
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
 
 app.get('/', (req, res) => {
   res.send('Hello ')
