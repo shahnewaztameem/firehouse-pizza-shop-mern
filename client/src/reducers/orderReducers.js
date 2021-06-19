@@ -24,6 +24,7 @@ import {
   ORDER_PENDING_SUCCESS,
   ORDER_PENDING_FAIL,
   ORDER_PENDING_RESET,
+  ORDER_CREATE_RESET,
 } from '../constants/orderConstants'
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -43,6 +44,8 @@ export const orderCreateReducer = (state = {}, action) => {
         loading: false,
         error: action.payload,
       }
+    case ORDER_CREATE_RESET:
+      return {}
     default:
       return state
   }
