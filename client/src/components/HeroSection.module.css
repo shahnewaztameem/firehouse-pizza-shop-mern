@@ -1,0 +1,7 @@
+
+.hero_bg {
+  background-image: url('../assets/images/giveaway.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+  height: 80vh;
+}

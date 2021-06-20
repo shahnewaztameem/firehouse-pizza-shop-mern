@@ -1,10 +1,15 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, Container, NavDropdown, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/userActions'
 import SearchBox from './SearchBox'
+import HeroSection from './HeroSection'
+import logo from '../assets/logo/logo.png'
+import userProfile from '../assets/icons/user-profile.svg'
+import shoppingCart from '../assets/icons/shopping-cart.svg'
+import styles from './Header.module.css'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -12,24 +17,38 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
+  console.log(cartItems.length)
+
   const logoutHandler = () => {
     dispatch(logout())
   }
   return (
     <header>
-      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
-        <Container>
+      <Navbar bg='white' variant='dark' expand='lg' collapseOnSelect>
+        <Container fluid className='mx-5 px-5'>
           <LinkContainer to='/'>
-            <Navbar.Brand>Electro Shop</Navbar.Brand>
+            <Navbar.Brand>
+              <Image
+                src={logo}
+                alt='logo'
+                style={{ width: '100px', height: '100px' }}
+                fluid
+              />
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>
-                <Nav.Link>
+                <Nav.Link className='mr-3'>
                   {' '}
-                  <i className='fas fa-shopping-cart'></i> Cart
+                  <span className='position-relative'>
+                    <Image src={shoppingCart} alt='shopping cart' fluid />{' '}
+                    <div className={styles.cartCount}>{cartItems.length}</div>
+                  </span>
                 </Nav.Link>
               </LinkContainer>
 
@@ -45,7 +64,15 @@ const Header = () => {
               ) : (
                 <LinkContainer to='/login'>
                   <Nav.Link>
-                    <i className='fas fa-user'></i> Sign In
+                    <span>
+                      <Image
+                        src={userProfile}
+                        alt='user profile'
+                        fluid
+                        style={{ height: '20px' }}
+                      />
+                    </span>{'  '}
+                    <span>Sign In</span>
                   </Nav.Link>
                 </LinkContainer>
               )}

@@ -9,7 +9,9 @@ import Message from '../components/Message'
 import Paginate from '../components/Paginate'
 import Meta from '../components/Meta'
 import ProductCarousel from '../components/ProductCarousel'
-
+import HeroSection from '../components/HeroSection'
+import AwesomeFeatures from '../components/AwesomeFeatures'
+import Slogan from '../components/Slogan'
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword
@@ -26,29 +28,34 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
-      <Meta/>
-      {!keyword ? <ProductCarousel /> : <Link to="/" className="btn btn-light">Go Back</Link>}
-      <h1>Latest Products</h1>
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant='danger'>{error}</Message>
-      ) : (
-        <>
-          <Row>
-            {products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                <Product product={product} />
-              </Col>
-            ))}
-          </Row>
-          <Paginate
-            pages={pages}
-            page={page}
-            keyword={keyword ? keyword : ''}
-          />
-        </>
-      )}
+      <HeroSection />
+      <AwesomeFeatures />
+      <Slogan />
+      <Meta />
+      {/*!keyword ? <ProductCarousel /> : <Link to="/" className="btn btn-light">Go Back</Link>*/}
+      <div className='mx-5 px-5 my-5 py-5'>
+        <h1 className="font-weight-bold text-center mb-5">Discover Our Menu</h1>
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant='danger'>{error}</Message>
+        ) : (
+          <>
+            <Row>
+              {products.map((product) => (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              ))}
+            </Row>
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ''}
+            />
+          </>
+        )}
+      </div>
     </>
   )
 }

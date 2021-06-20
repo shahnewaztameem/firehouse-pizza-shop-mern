@@ -19,13 +19,13 @@ import UserEditScreen from './screens/UserEditScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
-
+import HeroSection from './components/HeroSection'
 const App = () => {
   return (
     <Router>
       <Header />
       <main className='py-3'>
-        <Container>
+        <Container fluid>
           <Route path='/order/:id' component={OrderScreen} />
           <Route path='/shipping' component={ShippingScreen} />
           <Route path='/payment' component={PaymentScreen} />

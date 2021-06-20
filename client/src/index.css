@@ -1,9 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Nunito:wght@400;700;900&display=swap');
+.navbar-dark .navbar-nav .nav-link {
+  color: #252c2e;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:active,
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show > .nav-link {
+  color: #252c2e;
+}
+body {
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.2px;
+  overflow-x: hidden;
+}
 main {
   min-height: 80vh;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+  color: #252c2e;
+}
+
 h1 {
-  font-size: 1.8rem;
+  font-size: 3rem;
   padding: 1rem 0;
 }
 
@@ -16,3 +49,25 @@ h3 {
   padding: 1rem 0;
 }
 
+.custom-btn {
+  padding: 15px 40px;
+  background-color: #ff4555;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 30px;
+  box-shadow: 0 3.4px 14.8px rgba(0, 0, 0, 0.196),
+    0 11.4px 49.8px rgba(0, 0, 0, 0.289), 0 51px 223px rgba(0, 0, 0, 0.36);
+  transition: 0.3s all ease-in-out;
+}
+
+.custom-btn:hover {
+  background-color: #ff5765;
+}
+
+p {
+  font-size: 17px;
+  line-height: 25px;
+  color: #626566;
+  font-family: 'Lato', sans-serif;
+  font-weight: normal;
+}
