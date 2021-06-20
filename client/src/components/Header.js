@@ -33,7 +33,7 @@ const Header = () => {
               <Image
                 src={logo}
                 alt='logo'
-                style={{ width: '100px', height: '100px' }}
+                style={{ width: '140px', height: '140px' }}
                 fluid
               />
             </Navbar.Brand>
