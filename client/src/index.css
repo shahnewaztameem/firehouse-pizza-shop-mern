@@ -19,10 +19,17 @@ body {
   font-family: 'Nunito', sans-serif;
   letter-spacing: 0.2px;
   overflow-x: hidden;
+  color: #252c2e;
 }
 main {
   min-height: 80vh;
 }
+
+a{
+  text-decoration: none !important;
+  
+}
+
 
 h1,
 h2,
