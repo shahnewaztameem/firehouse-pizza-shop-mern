@@ -26,7 +26,7 @@ const Header = () => {
   }
   return (
     <header>
-      <Navbar bg='white' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar className="pt-0" bg='white' variant='dark' expand='lg' collapseOnSelect>
         <Container fluid className='mx-5 px-5'>
           <LinkContainer to='/'>
             <Navbar.Brand>
