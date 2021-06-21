@@ -78,3 +78,23 @@ p {
   font-family: 'Lato', sans-serif;
   font-weight: normal;
 }
+
+.input {
+  border: 2px solid #252c2e;
+  border-radius: 5px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.input:focus {
+  color: #252c2e;
+  background-color: transparent;
+  border-color: #252c2e;
+  outline: 0;
+  box-shadow: none;
+}
+
+.login_btn {
+  padding: 12px 24px;
+  display: block;
+}

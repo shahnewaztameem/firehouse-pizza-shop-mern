@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
-import styles from './LoginScreen.module.css'
 import mailIcon from '../assets/icons/mail.svg'
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -61,7 +60,7 @@ const LoginScreen = ({ location, history }) => {
             placeholder='Enter Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={styles.input}
+            className='input'
           ></Form.Control>
         </Form.Group>
 
@@ -72,7 +71,7 @@ const LoginScreen = ({ location, history }) => {
             placeholder='Enter password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={styles.input}
+            className='input'
           ></Form.Control>
         </Form.Group>
 
@@ -81,14 +80,20 @@ const LoginScreen = ({ location, history }) => {
             <Button
               type='submit'
               variant='primary'
-              className='rounded'
+              className='rounded login_btn'
               disabled
+              style={{ width: '20%' }}
             >
-              <Spinner size='sm' animation='border' /> Sign In
+              <Spinner size='sm' animation='border' />
             </Button>
           </span>
         ) : (
-          <Button type='submit' variant='primary' className='rounded'>
+          <Button
+            type='submit'
+            variant='primary'
+            className='rounded login_btn'
+            style={{ width: '20%' }}
+          >
             Sign In
           </Button>
         )}
