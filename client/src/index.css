@@ -98,3 +98,7 @@ p {
   padding: 12px 24px;
   display: block;
 }
+
+.btn-dark {
+  background-color: #252c2e;
+}

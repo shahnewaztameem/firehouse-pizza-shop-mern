@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Card, Button, Form, Spinner } from 'react-bootstrap'
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  Form,
+  Spinner,
+} from 'react-bootstrap'
 import Rating from '../components/Rating'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -10,6 +19,9 @@ import {
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import styles from '../components/Product.module.css'
+import leftArrow from '../assets/icons/arrow-left.svg'
+import shoppingCart from '../assets/icons/shopping-cart-white.svg'
 
 const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1)
@@ -52,9 +64,12 @@ const ProductScreen = ({ match, history }) => {
   }
 
   return (
-    <>
+    <div className='mx-5 px-5'>
       <Link className='btn btn-dark my-3' to='/'>
-        <i className='fas fa-chevron-left'></i> Go Back
+        <span>
+          <Image src={leftArrow} fluid />
+        </span>{' '}
+        Go Back
       </Link>
       {loading ? (
         <Loader />
@@ -62,24 +77,42 @@ const ProductScreen = ({ match, history }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          <Row>
-            <Col md={6}>
+          <Row style={{ fontSize: '17px' }}>
+            <Col md={4}>
               <Image src={product.image} alt={product.name} fluid />
             </Col>
-            <Col md={3}>
+            <Col md={4}>
               <ListGroup variant='flush'>
-                <ListGroup.Item>
-                  <h2>{product.name}</h2>
+                <ListGroup.Item className='pt-0 border-0'>
+                  <h2 style={{ fontSize: '30px' }}>{product.name}</h2>
                 </ListGroup.Item>
-                <ListGroup.Item>
+
+                <ListGroup.Item className='border-0 pt-0'>
+                  <h4
+                    className={styles.product_category}
+                    style={{ color: '#ff4a59' }}
+                  >
+                    {product.category}
+                  </h4>
+                </ListGroup.Item>
+                <ListGroup.Item className='border-0'>
                   <Rating
                     value={product.rating}
                     text={`${product.numReviews} Reviews`}
                   />
                 </ListGroup.Item>
 
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item
+                  className='border-0'
+                  style={{
+                    color: '#FF4555',
+                    fontWeight: 900,
+                    fontSize: '23px',
+                  }}
+                >
+                  Price: ${product.price}
+                </ListGroup.Item>
+                <ListGroup.Item className='border-0'>
                   Description: {product.description}
                 </ListGroup.Item>
               </ListGroup>
@@ -88,7 +121,7 @@ const ProductScreen = ({ match, history }) => {
             <Col md={3}>
               <Card>
                 <ListGroup variant='flush'>
-                  <ListGroup.Item>
+                  <ListGroup.Item className='border-0'>
                     <Row>
                       <Col>Price:</Col>
                       <Col>
@@ -97,7 +130,7 @@ const ProductScreen = ({ match, history }) => {
                     </Row>
                   </ListGroup.Item>
 
-                  <ListGroup.Item>
+                  <ListGroup.Item className='border-0'>
                     <Row>
                       <Col>Status:</Col>
                       <Col>
@@ -132,10 +165,10 @@ const ProductScreen = ({ match, history }) => {
                   <ListGroup.Item>
                     <Button
                       onClick={addToCardHandler}
-                      className='btn-block'
+                      className='btn-block btn-dark position-relative'
                       disabled={product.countInStock === 0}
                     >
-                      Add To Cart
+                      <Image src={shoppingCart} className="position-absolute" style={{left: '95px', color: '#fff'}}/>Add To Cart
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
@@ -211,7 +244,7 @@ const ProductScreen = ({ match, history }) => {
           </Row>
         </>
       )}
-    </>
+    </div>
   )
 }
 
