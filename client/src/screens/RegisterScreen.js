@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { register } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
+import { ToastContainer, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
@@ -40,9 +42,21 @@ const RegisterScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <h1 className='text-center'>Sign Up</h1>
       {message && <Message variant='danger'>{message}</Message>}
-      {error && <Message variant='danger'>{error}</Message>}
+      {error && (
+        <ToastContainer
+          transition={Slide}
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHoverautoClose={2000}
+        />
+      )}
       {/*loading && <Loader />*/}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>
@@ -52,6 +66,7 @@ const RegisterScreen = ({ location, history }) => {
             placeholder='Enter name'
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className='input'
           ></Form.Control>
         </Form.Group>
 
@@ -62,6 +77,7 @@ const RegisterScreen = ({ location, history }) => {
             placeholder='Enter Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className='input'
           ></Form.Control>
         </Form.Group>
 
@@ -72,6 +88,7 @@ const RegisterScreen = ({ location, history }) => {
             placeholder='Enter password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className='input'
           ></Form.Control>
         </Form.Group>
 
@@ -82,17 +99,23 @@ const RegisterScreen = ({ location, history }) => {
             placeholder='Enter Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className='input'
           ></Form.Control>
         </Form.Group>
 
         {loading ? (
           <span>
-            <Button type='submit' variant='primary' disabled>
-              <Spinner size='sm' animation='border' /> Sign Up
+            <Button
+              type='submit'
+              variant='primary'
+              disabled
+              style={{ width: '20%' }}
+            >
+              <Spinner size='sm' animation='border' />
             </Button>
           </span>
         ) : (
-          <Button type='submit' variant='primary'>
+          <Button type='submit' variant='primary' style={{ width: '20%' }}>
             Sign Up
           </Button>
         )}
@@ -102,7 +125,9 @@ const RegisterScreen = ({ location, history }) => {
         <Col>
           Already Have an Account?{' '}
           <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-            Login
+            <strong className='font-weight-bold' style={{ color: '#ff4555' }}>
+              Login
+            </strong>
           </Link>
         </Col>
       </Row>
