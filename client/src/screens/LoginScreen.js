@@ -7,6 +7,8 @@ import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 import styles from './LoginScreen.module.css'
 import mailIcon from '../assets/icons/mail.svg'
+import { ToastContainer, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('')
@@ -37,7 +39,19 @@ const LoginScreen = ({ location, history }) => {
         <h4>Sign into your account </h4>
       </div>
 
-      {error && <Message variant='danger'>{error}</Message>}
+      {error && (
+        <ToastContainer
+          transition={Slide}
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHoverautoClose={2000}
+        />
+      )}
       {/*loading && <Loader />*/}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>

@@ -31,6 +31,8 @@ import {
   ORDER_LIST_MY_RESET,
 } from '../constants/orderConstants'
 
+import { toast } from 'react-toastify'
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST })
@@ -56,13 +58,15 @@ export const login = (email, password) => async (dispatch) => {
 
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
     dispatch({
       type: USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: message,
     })
+    toast.error(`${message}`, { position: toast.POSITION.TOP_CENTER })
   }
 }
 
