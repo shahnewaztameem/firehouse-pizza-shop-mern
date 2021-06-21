@@ -25,11 +25,9 @@ main {
   min-height: 80vh;
 }
 
-a{
+a {
   text-decoration: none !important;
-  
 }
-
 
 h1,
 h2,
@@ -101,4 +99,23 @@ p {
 
 .btn-dark {
   background-color: #252c2e;
+}
+
+.btn-light:hover {
+  outline: none;
+  background-color: transparent;
+}
+.btn-light.focus,
+.btn-light:focus,
+.btn-light:not(:disabled):not(.disabled).active,
+.btn-light:not(:disabled):not(.disabled):active,
+.show > .btn-light.dropdown-toggle {
+  color: #1a1a1a;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.btn.focus,
+.btn:focus {
+  box-shadow: none;
 }
