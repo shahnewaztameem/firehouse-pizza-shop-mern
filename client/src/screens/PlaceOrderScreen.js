@@ -66,13 +66,13 @@ const PlaceOrderScreen = ({ history }) => {
   }
 
   return (
-    <>
+    <div className='px-5 mx-5'>
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h2>Shipping To</h2>
               <p>
                 <strong>Address:</strong>
                 {cart.shippingAddress.address}, {cart.shippingAddress.city},{' '}
@@ -95,17 +95,21 @@ const PlaceOrderScreen = ({ history }) => {
                 <ListGroup variant='flush'>
                   {cart.cartItems.map((item, idx) => (
                     <ListGroup.Item key={idx}>
-                      <Row>
-                        <Col md={1}>
+                      <Row className='d-flex align-items-center'>
+                        <Col md={1} className='pl-0'>
                           <Image
                             src={item.image}
                             alt={item.name}
-                            fluid
-                            rounded
+                            style={{
+                              width: '100px',
+                              height: '100px',
+                              borderRadius: '50%',
+                             
+                            }}
                           />
                         </Col>
                         <Col>
-                          <Link to={`/product/${item.product}`}>
+                          <Link to={`/product/${item.product}`} className="ml-4">
                             {item.name}
                           </Link>
                         </Col>
@@ -174,7 +178,7 @@ const PlaceOrderScreen = ({ history }) => {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
   )
 }
 
