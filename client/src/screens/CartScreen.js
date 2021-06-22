@@ -49,7 +49,7 @@ const CartScreen = ({ match, location, history }) => {
           </Col>
         ) : (
           <Col md={8}>
-            <h1>Shopping Cart</h1>
+            <h1 className="pt-0">Shopping Cart</h1>
             <ListGroup variant='flush'>
               {cartItems.map((item) => (
                 <ListGroup.Item key={item.product} className='pl-0'>
