@@ -24,14 +24,14 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo])
 
   return (
-    <>
+    <div className='mx-5 px-5'>
       <h1>Orders</h1>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
+        <Table hover responsive className='table-sm'>
           <thead>
             <tr>
               <th>ID</th>
@@ -53,22 +53,26 @@ const OrderListScreen = ({ history }) => {
 
                 <td>
                   {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
+                    <span className='delivered'>
+                      {order.paidAt.substring(0, 10)}
+                    </span>
                   ) : (
-                    <i className='fas fa-times' style={{ color: 'red' }}></i>
+                    <div className='pending'>Pending</div>
                   )}
                 </td>
 
                 <td>
                   {order.isDelivered ? (
-                    order.deliveredAt.substring(0, 10)
+                    <span className='delivered'>
+                      {order.deliveredAt.substring(0, 10)}
+                    </span>
                   ) : (
-                    <i className='fas fa-times' style={{ color: 'red' }}></i>
+                    <div className='pending'>Not Delivered</div>
                   )}
                 </td>
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant='light' className='btn-sm'>
+                    <Button variant='light' className='btn-sm btn-dark rounded'>
                       Details
                     </Button>
                   </LinkContainer>
@@ -78,7 +82,7 @@ const OrderListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   )
 }
 

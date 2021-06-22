@@ -82,6 +82,7 @@ const ProfileScreen = ({ history }) => {
                     placeholder='Enter name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    className='input'
                   ></Form.Control>
                 </Form.Group>
 
@@ -92,6 +93,7 @@ const ProfileScreen = ({ history }) => {
                     placeholder='Enter Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    className='input'
                   ></Form.Control>
                 </Form.Group>
 
@@ -102,6 +104,7 @@ const ProfileScreen = ({ history }) => {
                     placeholder='Enter password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className='input'
                   ></Form.Control>
                 </Form.Group>
 
@@ -112,17 +115,23 @@ const ProfileScreen = ({ history }) => {
                     placeholder='Enter Confirm Password'
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    className='input'
                   ></Form.Control>
                 </Form.Group>
 
                 {loading ? (
                   <span>
-                    <Button type='submit' variant='primary' disabled>
+                    <Button
+                      type='submit'
+                      variant='primary'
+                      disabled
+                      className='rounded'
+                    >
                       <Spinner size='sm' animation='border' /> Update
                     </Button>
                   </span>
                 ) : (
-                  <Button type='submit' variant='primary'>
+                  <Button type='submit' variant='primary' className='rounded'>
                     Update
                   </Button>
                 )}
@@ -136,7 +145,7 @@ const ProfileScreen = ({ history }) => {
             ) : errorOrders ? (
               <Message variant='danger'>{errorOrders}</Message>
             ) : (
-              <Table striped bordered hover responsive className='table-sm'>
+              <Table hover responsive className='table-sm'>
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -144,7 +153,7 @@ const ProfileScreen = ({ history }) => {
                     <th>TOTAL</th>
                     <th>PAID</th>
                     <th>DELIVERED</th>
-                    <th></th>
+                    <th>ACTION</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -152,31 +161,32 @@ const ProfileScreen = ({ history }) => {
                     <tr key={order._id}>
                       <td>{order._id}</td>
                       <td>{order.createdAt.substring(0, 10)}</td>
-                      <td>{order.totalPrice}</td>
-                      <td className='text-center'>
+                      <td>$ {order.totalPrice}</td>
+                      <td>
                         {order.isPaid ? (
-                          order.paidAt.substring(0, 10)
+                          <span className='delivered'>
+                            {order.paidAt.substring(0, 10)}
+                          </span>
                         ) : (
-                          <i
-                            className='fas fa-times'
-                            style={{ color: 'red' }}
-                          ></i>
+                          <span className='pending'>Pending</span>
                         )}
                       </td>
 
-                      <td className='text-center'>
+                      <td>
                         {order.isDelivered ? (
-                          order.deliveredAt.substring(0, 10)
+                          <span className='delivered'>
+                            {order.deliveredAt.substring(0, 10)}
+                          </span>
                         ) : (
-                          <i
-                            className='fas fa-times'
-                            style={{ color: 'red' }}
-                          ></i>
+                          <span className='pending'>Not Delivered</span>
                         )}
                       </td>
                       <td>
                         <LinkContainer to={`/order/${order._id}`}>
-                          <Button variant='light' className='btn-sm'>
+                          <Button
+                            variant='light'
+                            className='btn-sm btn-dark rounded'
+                          >
                             Details
                           </Button>
                         </LinkContainer>

@@ -32,21 +32,21 @@ const UserListScreen = ({ history }) => {
   }
 
   return (
-    <>
+    <div className="mx-5 px-5">
       <h1>Users</h1>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
+        <Table hover responsive className='table-sm'>
           <thead>
             <tr>
               <th>ID</th>
               <th>NAME</th>
               <th>EMAIL</th>
               <th>ADMIN</th>
-              <th></th>
+              <th>ACTION</th>
             </tr>
           </thead>
           <tbody>
@@ -83,7 +83,7 @@ const UserListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   )
 }
 

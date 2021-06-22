@@ -1,13 +1,14 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Spinner } from 'react-bootstrap'
+import { Form, Button, Spinner, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import { listProductDetail, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
+import leftArrow from '../assets/icons/arrow-left.svg'
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id
@@ -85,7 +86,6 @@ const ProductEditScreen = ({ match, history }) => {
 
       setImage(data)
       setUploading(false)
-
     } catch (error) {
       console.error(error)
       setUploading(false)
@@ -93,8 +93,11 @@ const ProductEditScreen = ({ match, history }) => {
   }
 
   return (
-    <>
-      <Link to='/admin/productlist' className='btn btn-light my-3'>
+    <div className='mx-5 px-5'>
+      <Link to='/admin/productlist' className='btn btn-dark my-3'>
+        <span>
+          <Image src={leftArrow} fluid />
+        </span>{' '}
         Go Back
       </Link>
 
@@ -116,6 +119,7 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className="input"
               ></Form.Control>
             </Form.Group>
 
@@ -126,6 +130,7 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter price'
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+                className="input"
               ></Form.Control>
             </Form.Group>
 
@@ -136,6 +141,7 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter image url address'
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
+                className="input"
               ></Form.Control>
               <Form.File
                 id='image-file'
@@ -153,6 +159,7 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter brand'
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
+                className="input"
               ></Form.Control>
             </Form.Group>
 
@@ -163,6 +170,7 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter Count In Stock'
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
+                className="input"
               ></Form.Control>
             </Form.Group>
 
@@ -173,6 +181,7 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter category'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
+                className="input"
               ></Form.Control>
             </Form.Group>
 
@@ -183,24 +192,25 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                className="input"
               ></Form.Control>
             </Form.Group>
 
             {loadingUpdate ? (
               <span>
-                <Button type='submit' variant='primary' disabled>
+                <Button type='submit' variant='primary' disabled className="rounded">
                   <Spinner size='sm' animation='border' /> {'  '} Updating...
                 </Button>
               </span>
             ) : (
-              <Button type='submit' variant='primary'>
+              <Button type='submit' variant='primary' className="">
                 Update Product
               </Button>
             )}
           </Form>
         )}
       </FormContainer>
-    </>
+    </div>
   )
 }
 

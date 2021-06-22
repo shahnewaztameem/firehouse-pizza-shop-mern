@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Spinner } from 'react-bootstrap'
+import { Form, Button, Spinner, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import { getUserDetails, updateUser } from '../actions/userActions'
 import { USER_UPDATE_RESET } from '../constants/userConstants'
+import leftArrow from '../assets/icons/arrow-left.svg'
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id
@@ -48,8 +49,11 @@ const UserEditScreen = ({ match, history }) => {
   }
 
   return (
-    <>
-      <Link to='/admin/userlist' className='btn btn-light my-3'>
+    <div className='mx-5 px-5'>
+      <Link to='/admin/userlist' className='btn btn-dark my-3'>
+        <span>
+          <Image src={leftArrow} fluid />
+        </span>{' '}
         Go Back
       </Link>
 
@@ -70,6 +74,7 @@ const UserEditScreen = ({ match, history }) => {
                 placeholder='Enter name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className='input'
               ></Form.Control>
             </Form.Group>
 
@@ -80,6 +85,7 @@ const UserEditScreen = ({ match, history }) => {
                 placeholder='Enter Email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className='input'
               ></Form.Control>
             </Form.Group>
 
@@ -95,18 +101,18 @@ const UserEditScreen = ({ match, history }) => {
             {loadingUpdate ? (
               <span>
                 <Button type='submit' variant='primary' disabled>
-                  <Spinner size='sm' animation='border' /> {'  '} Updating...
+                  <Spinner size='sm' animation='border' /> {'  '} Updating User
                 </Button>
               </span>
             ) : (
-              <Button type='submit' variant='primary'>
+              <Button type='submit' variant='primary' className="rounded">
                 Update User
               </Button>
             )}
           </Form>
         )}
       </FormContainer>
-    </>
+    </div>
   )
 }
 
