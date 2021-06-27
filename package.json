@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shahnewaztameem/electro-shop-mern.git"
+    "url": "git+https://github.com/shahnewaztameem/firehouse-pizza-shop-mern.git"
   },
   "author": "Shahnewaz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shahnewaztameem/electro-shop-mern/issues"
+    "url": "https://github.com/shahnewaztameem/firehouse-pizza-shop-mern/issues"
   },
-  "homepage": "https://github.com/shahnewaztameem/electro-shop-mern#readme",
+  "homepage": "https://github.com/shahnewaztameem/firehouse-pizza-shop-mern#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
