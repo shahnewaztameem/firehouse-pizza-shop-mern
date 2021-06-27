@@ -25,20 +25,20 @@ import shoppingCart from '../assets/icons/shopping-cart-white.svg'
 import { motion } from 'framer-motion'
 
 // Custom easing
-let easing = [0.6, -0.05, 0.01, 0.99]
+let easing = [1, -0.05, 0.01, 0.99]
 
 // Custom variant
 const fadeInUp = {
   initial: {
     y: 60,
     opacity: 0,
-    transition: { duration: 0.6, ease: easing },
+    transition: { duration: 1, ease: easing },
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.6,
+      duration: 1,
       ease: easing,
     },
   },
@@ -115,7 +115,7 @@ const ProductScreen = ({ match, history }) => {
               <motion.img
                 initial={{ x: 200, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.5 }}
                 src={product.image}
                 alt={product.name}
                 className='img-fluid'
