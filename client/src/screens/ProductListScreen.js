@@ -38,6 +38,7 @@ const ProductListScreen = ({ match, history }) => {
   const { userInfo } = userLogin
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     dispatch({ type: PRODUCT_CREATE_RESET })
     if (!userInfo.isAdmin) {
       history.push('/login')

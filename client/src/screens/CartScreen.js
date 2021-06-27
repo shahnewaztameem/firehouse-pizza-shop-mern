@@ -28,6 +28,7 @@ const CartScreen = ({ match, location, history }) => {
   const { cartItems } = cart
   console.log(cartItems)
   useEffect(() => {
+    window.scrollTo(0, 0)
     if (productId) {
       dispatch(addToCart(productId, qty))
     }

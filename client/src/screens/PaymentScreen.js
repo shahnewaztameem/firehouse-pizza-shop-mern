@@ -7,6 +7,7 @@ import CheckoutSteps from '../components/CheckoutSteps'
 import { motion } from 'framer-motion'
 
 const PaymentScreen = ({ history }) => {
+  window.scrollTo(0, 0)
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
 

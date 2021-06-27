@@ -22,6 +22,7 @@ const HomeScreen = ({ match }) => {
   const { loading, products, error, page, pages } = productList
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     dispatch(listProducts(keyword, pageNumber))
   }, [dispatch, keyword, pageNumber])
 

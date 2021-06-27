@@ -31,6 +31,7 @@ const ProfileScreen = ({ history }) => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     if (!userInfo) {
       history.push('/login')
     } else {
