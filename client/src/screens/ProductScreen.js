@@ -223,15 +223,17 @@ const ProductScreen = ({ match, history }) => {
                     <ListGroup.Item>
                       <Button
                         onClick={addToCardHandler}
-                        className='btn-block btn-dark position-relative'
+                        className='btn-block btn-dark'
                         disabled={product.countInStock === 0}
                       >
-                        <Image
-                          src={shoppingCart}
-                          className='position-absolute'
-                          style={{ left: '95px', color: '#fff' }}
-                        />
-                        Add To Cart
+                        <span className='position-relative'>
+                          <Image
+                            src={shoppingCart}
+                            style={{ right: '10px', color: '#fff' }}
+                            className='position-absolute'
+                          />
+                        </span>
+                        <span>Add To Cart</span>
                       </Button>
                     </ListGroup.Item>
                   </motion.div>
