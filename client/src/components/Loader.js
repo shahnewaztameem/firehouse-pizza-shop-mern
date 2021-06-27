@@ -6,7 +6,7 @@ const Loader = () => {
       className='d-flex justify-content-center align-items-center'
       style={{ height: '30vh' }}
     >
-      <div classNameName='loading'>
+      <div className='loading'>
         <div className='loading__ring'>
           <svg
             xmlns='http://www.w3.org/2000/svg'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container, Button } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
 import styles from './HeroSection.module.css'
 
 const HeroSection = () => {

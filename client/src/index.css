@@ -221,6 +221,21 @@ input:-webkit-autofill:active {
 }
 
 .delivered {
-  background-color: #EBF9F4;
-  color: #42AA85;
+  background-color: #ebf9f4;
+  color: #42aa85;
+}
+
+select {
+  padding: 1em 1.5em;
+  background: #4d5061 !important;
+  color: #fff !important;
+  border: 0;
+  
+}
+
+select:focus {
+  outline: none !important;
+  border-radius: none !important;
+  box-shadow: none!important;
+  border-color: none !important;
 }

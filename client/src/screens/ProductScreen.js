@@ -22,6 +22,35 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import styles from '../components/Product.module.css'
 import leftArrow from '../assets/icons/arrow-left.svg'
 import shoppingCart from '../assets/icons/shopping-cart-white.svg'
+import { motion } from 'framer-motion'
+
+// Custom easing
+let easing = [0.6, -0.05, 0.01, 0.99]
+
+// Custom variant
+const fadeInUp = {
+  initial: {
+    y: 60,
+    opacity: 0,
+    transition: { duration: 0.6, ease: easing },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+}
+
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
 
 const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1)
@@ -44,6 +73,8 @@ const ProductScreen = ({ match, history }) => {
   } = productReviewCreate
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+
     if (successProductReview) {
       alert('Review Submitted!')
       setRating(0)
@@ -64,113 +95,146 @@ const ProductScreen = ({ match, history }) => {
   }
 
   return (
-    <div className='mx-5 px-5'>
-      <Link className='btn btn-dark my-3' to='/'>
-        <span>
-          <Image src={leftArrow} fluid />
-        </span>{' '}
-        Go Back
-      </Link>
+    <motion.div className='mx-5 px-5' initial='initial' animate='animate'>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
+          <motion.div variants={fadeInUp}>
+            <Link className='btn btn-dark my-3' to='/'>
+              <span>
+                <Image src={leftArrow} fluid />
+              </span>{' '}
+              Go Back
+            </Link>
+          </motion.div>
           <Row style={{ fontSize: '17px' }}>
             <Col md={4}>
-              <Image src={product.image} alt={product.name} fluid />
+              <motion.img
+                initial={{ x: 200, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                src={product.image}
+                alt={product.name}
+                className='img-fluid'
+              />
             </Col>
             <Col md={4}>
               <ListGroup variant='flush'>
-                <ListGroup.Item className='pt-0 border-0'>
-                  <h2 style={{ fontSize: '30px' }}>{product.name}</h2>
-                </ListGroup.Item>
+                <motion.div variants={fadeInUp}>
+                  <ListGroup.Item className='pt-0 border-0'>
+                    <h2 style={{ fontSize: '30px' }}>{product.name}</h2>
+                  </ListGroup.Item>
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <ListGroup.Item className='border-0 pt-0'>
+                    <h4
+                      className={styles.product_category}
+                      style={{ color: '#ff4a59' }}
+                    >
+                      {product.category}
+                    </h4>
+                  </ListGroup.Item>
+                </motion.div>
 
-                <ListGroup.Item className='border-0 pt-0'>
-                  <h4
-                    className={styles.product_category}
-                    style={{ color: '#ff4a59' }}
+                <motion.div variants={fadeInUp}>
+                  <ListGroup.Item className='border-0'>
+                    <Rating
+                      value={product.rating}
+                      text={`${product.numReviews} Reviews`}
+                    />
+                  </ListGroup.Item>
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <ListGroup.Item
+                    className='border-0'
+                    style={{
+                      color: '#FF4555',
+                      fontWeight: 900,
+                      fontSize: '23px',
+                    }}
                   >
-                    {product.category}
-                  </h4>
-                </ListGroup.Item>
-                <ListGroup.Item className='border-0'>
-                  <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} Reviews`}
-                  />
-                </ListGroup.Item>
-
-                <ListGroup.Item
-                  className='border-0'
-                  style={{
-                    color: '#FF4555',
-                    fontWeight: 900,
-                    fontSize: '23px',
-                  }}
-                >
-                  Price: ${product.price}
-                </ListGroup.Item>
-                <ListGroup.Item className='border-0'>
-                  Description: {product.description}
-                </ListGroup.Item>
+                    Price: ${product.price}
+                  </ListGroup.Item>
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <ListGroup.Item className='border-0'>
+                    Description: {product.description}
+                  </ListGroup.Item>
+                </motion.div>
               </ListGroup>
             </Col>
 
             <Col md={3}>
               <Card>
                 <ListGroup variant='flush'>
-                  <ListGroup.Item className='border-0'>
-                    <Row>
-                      <Col>Price:</Col>
-                      <Col>
-                        <strong>${product.price}</strong>
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-
-                  <ListGroup.Item className='border-0'>
-                    <Row>
-                      <Col>Status:</Col>
-                      <Col>
-                        {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-
-                  {product.countInStock > 0 && (
-                    <ListGroup.Item>
+                  <motion.div variants={fadeInUp}>
+                    <ListGroup.Item className='border-0'>
                       <Row>
-                        <Col>Qty</Col>
+                        <Col>Price:</Col>
                         <Col>
-                          <Form.Control
-                            as='select'
-                            value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                          >
-                            {[...Array(product.countInStock).keys()].map(
-                              (x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              )
-                            )}
-                          </Form.Control>
+                          <strong>${product.price}</strong>
                         </Col>
                       </Row>
                     </ListGroup.Item>
+                  </motion.div>
+
+                  <motion.div variants={fadeInUp}>
+                    <ListGroup.Item className='border-0'>
+                      <Row>
+                        <Col>Status:</Col>
+                        <Col>
+                          {product.countInStock > 0
+                            ? 'In Stock'
+                            : 'Out Of Stock'}
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  </motion.div>
+
+                  {product.countInStock > 0 && (
+                    <motion.div variants={fadeInUp}>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Qty</Col>
+                          <Col>
+                            <Form.Control
+                              as='select'
+                              value={qty}
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(product.countInStock).keys()].map(
+                                (x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                )
+                              )}
+                            </Form.Control>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
+                    </motion.div>
                   )}
 
-                  <ListGroup.Item>
-                    <Button
-                      onClick={addToCardHandler}
-                      className='btn-block btn-dark position-relative'
-                      disabled={product.countInStock === 0}
-                    >
-                      <Image src={shoppingCart} className="position-absolute" style={{left: '95px', color: '#fff'}}/>Add To Cart
-                    </Button>
-                  </ListGroup.Item>
+                  <motion.div variants={fadeInUp}>
+                    <ListGroup.Item>
+                      <Button
+                        onClick={addToCardHandler}
+                        className='btn-block btn-dark position-relative'
+                        disabled={product.countInStock === 0}
+                      >
+                        <Image
+                          src={shoppingCart}
+                          className='position-absolute'
+                          style={{ left: '95px', color: '#fff' }}
+                        />
+                        Add To Cart
+                      </Button>
+                    </ListGroup.Item>
+                  </motion.div>
                 </ListGroup>
               </Card>
             </Col>
@@ -244,7 +308,7 @@ const ProductScreen = ({ match, history }) => {
           </Row>
         </>
       )}
-    </div>
+    </motion.div>
   )
 }
 

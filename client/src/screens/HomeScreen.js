@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
@@ -8,10 +7,10 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Paginate from '../components/Paginate'
 import Meta from '../components/Meta'
-import ProductCarousel from '../components/ProductCarousel'
 import HeroSection from '../components/HeroSection'
 import AwesomeFeatures from '../components/AwesomeFeatures'
 import Slogan from '../components/Slogan'
+import { motion } from 'framer-motion'
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword
@@ -27,7 +26,7 @@ const HomeScreen = ({ match }) => {
   }, [dispatch, keyword, pageNumber])
 
   return (
-    <>
+    <motion.div exit={{ opacity: 0 }}>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -36,7 +35,7 @@ const HomeScreen = ({ match }) => {
         <>
           <HeroSection />
           <AwesomeFeatures />
-          <Slogan />
+
           <Meta />
           {/*!keyword ? <ProductCarousel /> : <Link to="/" className="btn btn-light">Go Back</Link>*/}
           <div className='mx-5 px-5 my-5 py-5'>
@@ -64,9 +63,10 @@ const HomeScreen = ({ match }) => {
               </>
             )}
           </div>
+          <Slogan />
         </>
       )}
-    </>
+    </motion.div>
   )
 }
 

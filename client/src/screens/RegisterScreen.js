@@ -7,6 +7,7 @@ import { register } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { motion } from 'framer-motion'
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
@@ -41,97 +42,110 @@ const RegisterScreen = ({ location, history }) => {
   }
 
   return (
-    <FormContainer>
-      <h1 className='text-center'>Sign Up</h1>
-      {message && <Message variant='danger'>{message}</Message>}
-      {error && (
-        <ToastContainer
-          transition={Slide}
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHoverautoClose={2000}
-        />
-      )}
-      {/*loading && <Loader />*/}
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId='name'>
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control
-            type='name'
-            placeholder='Enter name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className='input'
-          ></Form.Control>
-        </Form.Group>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <FormContainer>
+        <h1 className='text-center'>Sign Up</h1>
+        {message && <Message variant='danger'>{message}</Message>}
+        {error && (
+          <ToastContainer
+            transition={Slide}
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHoverautoClose={2000}
+          />
+        )}
+        {/*loading && <Loader />*/}
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId='name'>
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              type='name'
+              placeholder='Enter name'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className='input'
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId='email'>
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type='email'
-            placeholder='Enter Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className='input'
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId='email'>
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type='email'
+              placeholder='Enter Email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className='input'
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Enter password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className='input'
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId='password'>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type='password'
+              placeholder='Enter password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className='input'
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId='confirmPassword'>
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Enter Confirm Password'
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className='input'
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId='confirmPassword'>
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type='password'
+              placeholder='Enter Confirm Password'
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className='input'
+            ></Form.Control>
+          </Form.Group>
 
-        {loading ? (
-          <span>
+          {loading ? (
+            <span>
+              <Button
+                type='submit'
+                variant='primary'
+                disabled
+                style={{ width: '20%' }}
+                className='rounded'
+              >
+                <Spinner size='sm' animation='border' />
+              </Button>
+            </span>
+          ) : (
             <Button
               type='submit'
               variant='primary'
-              disabled
               style={{ width: '20%' }}
+              className='rounded'
             >
-              <Spinner size='sm' animation='border' />
+              Sign Up
             </Button>
-          </span>
-        ) : (
-          <Button type='submit' variant='primary' style={{ width: '20%' }}>
-            Sign Up
-          </Button>
-        )}
-      </Form>
+          )}
+        </Form>
 
-      <Row className='py-3'>
-        <Col>
-          Already Have an Account?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-            <strong className='font-weight-bold' style={{ color: '#ff4555' }}>
-              Login
-            </strong>
-          </Link>
-        </Col>
-      </Row>
-    </FormContainer>
+        <Row className='py-3'>
+          <Col>
+            Already Have an Account?{' '}
+            <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+              <strong className='font-weight-bold' style={{ color: '#ff4555' }}>
+                Login
+              </strong>
+            </Link>
+          </Col>
+        </Row>
+      </FormContainer>
+    </motion.div>
   )
 }
 

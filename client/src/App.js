@@ -19,48 +19,54 @@ import UserEditScreen from './screens/UserEditScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
-import HeroSection from './components/HeroSection'
+import { AnimatePresence } from 'framer-motion'
+
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <main className='py-3'>
-        <Container fluid>
-          <Route path='/order/:id' component={OrderScreen} />
-          <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/payment' component={PaymentScreen} />
-          <Route path='/placeorder' component={PlaceOrderScreen} />
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/register' component={RegisterScreen} />
-          <Route path='/profile' component={ProfileScreen} />
-          <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/cart/:id?' component={CartScreen} />
-          <Route path='/admin/userlist' component={UserListScreen} />
-          <Route
-            path='/admin/productlist'
-            component={ProductListScreen}
-            exact
-          />
-          <Route
-            path='/admin/productlist/:pageNumber'
-            component={ProductListScreen}
-            exact
-          />
-          <Route path='/admin/orderlist' component={OrderListScreen} />
-          <Route path='/admin/user/:id/edit' component={UserEditScreen} />
-          <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
-          <Route path='/search/:keyword' component={HomeScreen} exact />
-          <Route path='/page/:pageNumber' component={HomeScreen} exact />
-          <Route
-            path='/search/:keyword/page/:pageNumber'
-            component={HomeScreen}
-            exact
-          />
-          <Route path='/' component={HomeScreen} exact />
-        </Container>
-      </main>
-      <Footer />
-    </Router>
+    <AnimatePresence exitBeforeEnter>
+      <Router>
+        <Header />
+        <main className='py-3'>
+          <Container fluid>
+            <Route path='/order/:id' component={OrderScreen} />
+            <Route path='/shipping' component={ShippingScreen} />
+            <Route path='/payment' component={PaymentScreen} />
+            <Route path='/placeorder' component={PlaceOrderScreen} />
+            <Route path='/login' component={LoginScreen} />
+            <Route path='/register' component={RegisterScreen} />
+            <Route path='/profile' component={ProfileScreen} />
+            <Route path='/product/:id' component={ProductScreen} />
+            <Route path='/cart/:id?' component={CartScreen} />
+            <Route path='/admin/userlist' component={UserListScreen} />
+            <Route
+              path='/admin/productlist'
+              component={ProductListScreen}
+              exact
+            />
+            <Route
+              path='/admin/productlist/:pageNumber'
+              component={ProductListScreen}
+              exact
+            />
+            <Route path='/admin/orderlist' component={OrderListScreen} />
+            <Route path='/admin/user/:id/edit' component={UserEditScreen} />
+            <Route
+              path='/admin/product/:id/edit'
+              component={ProductEditScreen}
+            />
+            <Route path='/search/:keyword' component={HomeScreen} exact />
+            <Route path='/page/:pageNumber' component={HomeScreen} exact />
+            <Route
+              path='/search/:keyword/page/:pageNumber'
+              component={HomeScreen}
+              exact
+            />
+            <Route path='/' component={HomeScreen} exact />
+          </Container>
+        </main>
+        <Footer />
+      </Router>
+    </AnimatePresence>
   )
 }
 
