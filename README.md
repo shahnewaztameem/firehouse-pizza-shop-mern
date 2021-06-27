@@ -1,6 +1,7 @@
 # Firehouse Pizza Shop
 ## An eCommerce platform built with the MERN stack & Redux.
 ## [Live Application](https://firehousepizza.herokuapp.com/)
+![image](https://user-images.githubusercontent.com/19238216/123558679-66e2e700-d7b9-11eb-8af0-2c4dbbe395ae.png)
 
 ## ✨Technology Used
 
